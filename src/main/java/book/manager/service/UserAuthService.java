@@ -1,6 +1,8 @@
 package book.manager.service;
 
+import book.manager.entity.AuthUser;
 import book.manager.mapper.UserMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,12 +17,14 @@ public class UserAuthService implements UserDetailsService {
     UserMapper mapper;
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        String password = mapper.getPasswordByUsername(s);
-        if (password == null) throw new UsernameNotFoundException("登录失败，用户名或密码错误");
+        AuthUser user = mapper.getPasswordByUsername(s);
+        if (user == null) throw new UsernameNotFoundException("登录失败，用户名或密码错误");
         return User
-                .withUsername(s)
-                .password(password)
-                .roles("user")
+                .withUsername(user.getUsername())
+                .password(user.getPassword())
+                .roles(user.getRole())
                 .build();
     }
+
+
 }

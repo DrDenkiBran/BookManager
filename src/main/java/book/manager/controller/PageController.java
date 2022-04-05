@@ -1,5 +1,6 @@
 package book.manager.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 /**
@@ -14,4 +15,8 @@ public class PageController {
 
     @RequestMapping("/login")
     public String login() { return "login"; }
+
+    @PreAuthorize("hasRole('admin')")
+    @RequestMapping("/admin")
+    public String admin() { return "index"; }
 }
