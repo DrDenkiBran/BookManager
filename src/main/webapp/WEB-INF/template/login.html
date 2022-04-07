@@ -15,9 +15,9 @@
     <meta name="author" content="">
     <meta name="MobileOptimized" content="320">
     <!--Start Style -->
-    <link rel="stylesheet" type="text/css" href="static/css/fonts.css">
-    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="static/css/auth.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/fonts.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/auth.css}">
 </head>
 
 <body>
@@ -26,14 +26,14 @@
             <div class="row align-items-center">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                     <div class="ad-auth-img">
-                        <img src="static/picture/auth-img1.png" alt="">
+                        <img th:src="@{/static/picture/auth-img1.png}" alt="">
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                     <div class="ad-auth-content">
-                        <form method="post" action="api/auth/login">
+                        <form method="post" th:action="@{/api/auth/login}">
                             <a href="index.html" class="ad-auth-logo">
-                                <img src="static/picture/logo2.png" alt="">
+                                <img th:src="@{/static/picture/logo2.png}" alt="">
                             </a>
                             <h2><span class="primary">欢迎登录</span>图书管理系统!</h2>
                             <p>请输入账号与密码</p>
@@ -64,7 +64,7 @@
                             <div class="ad-auth-btn">
                                 <button type="submit" class="ad-btn ad-login-member">登录</button>
                             </div>
-                            <p class="ad-register-text">没有账号？ <a href="register">注册</a></p>
+                            <p class="ad-register-text">没有账号？ <a th:href="@{/page/auth/register}">注册</a></p>
                         </form>
                     </div>
                 </div>
