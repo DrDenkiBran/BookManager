@@ -8,8 +8,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.transaction.TransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import javax.xml.crypto.Data;
@@ -19,11 +22,12 @@ import javax.xml.crypto.Data;
 })
 @MapperScan("book.manager.mapper")
 @Configuration
+@EnableTransactionManagement
 public class RootConfiguration {
     @Bean
     public DataSource dataSource(){
         HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/blog");
+        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/book_manage");
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUsername("root");
         dataSource.setPassword("123456");
@@ -37,6 +41,11 @@ public class RootConfiguration {
         return bean;
     }
 
+//    注册Spring事务管理
+    @Bean
+    public TransactionManager transactionManager(@Autowired DataSource dataSource){
+        return new DataSourceTransactionManager(dataSource);
+    }
 
 
 }

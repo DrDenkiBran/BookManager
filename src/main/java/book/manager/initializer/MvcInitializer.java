@@ -3,7 +3,11 @@ package book.manager.initializer;
 import book.manager.config.MvcConfiguration;
 import book.manager.config.RootConfiguration;
 import book.manager.config.SecurityConfiguration;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 public class MvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
