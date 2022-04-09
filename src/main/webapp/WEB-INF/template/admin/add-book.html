@@ -38,105 +38,66 @@
 		<div class="main-content">
 			<!-- Page Title Start -->
 			<div class="row">
-				<div class="colxl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 					<div class="page-title-wrapper">
-						<div class="page-title-box ad-title-box-use">
-							<h4 class="page-title">图书管理</h4>
+						<div class="page-title-box">
+							<h4 class="page-title">录入书籍信息</h4>
 						</div>
-						<div class="ad-breadcrumb">
+						<div class="breadcrumb-list">
 							<ul>
-								<li>
-									<div class="add-group">
-										<a th:href="@{/page/admin/add-book}" class="ad-btn">添加图书</a>
-									</div>
+								<li class="breadcrumb-link">
+									<a href="javascript:void(0);"><i class="fas fa-home mr-2"></i>图书管理系统</a>
 								</li>
+								<li class="breadcrumb-link active">录入书籍信息</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- Table Start -->
-			<div class="row">
-				<!-- Styled Table Card-->
-				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-					<div class="card table-card">
-						<div class="card-header pb-0">
-							<h4>图书列表</h4>
-						</div>
-						<div class="card-body">
-							<div class="chart-holder">
-								<div class="table-responsive">
-									<table class="table table-styled mb-0">
-										<thead>
-										<tr>
-											<th>#ID</th>
-											<th>标题</th>
-											<th>简介</th>
-											<th>价格</th>
-											<th>编辑</th>
-										</tr>
-										</thead>
-										<tbody>
-										<tr th:each="book:${bookList}">
-											<td th:text="${book.getBid()}">
-												1
-											</td>
-											<td th:text="${book.getTitle()}">Scott Henry</td>
-
-											<td th:text="${book.getDesc()}">2210 Grove Street Bethpage, NI 440014</td>
-
-											<td th:text="${book.getPrice()}">$6,415</td>
-
-											<td class="relative">
-												<a class="action-btn " href="javascript:void(0); ">
-													<svg class="default-size " viewBox="0 0 341.333 341.333 ">
-														<g>
-															<g>
-																<g>
-																	<path d="M170.667,85.333c23.573,0,42.667-19.093,42.667-42.667C213.333,19.093,194.24,0,170.667,0S128,19.093,128,42.667 C128,66.24,147.093,85.333,170.667,85.333z "></path>
-																	<path d="M170.667,128C147.093,128,128,147.093,128,170.667s19.093,42.667,42.667,42.667s42.667-19.093,42.667-42.667 S194.24,128,170.667,128z "></path>
-																	<path d="M170.667,256C147.093,256,128,275.093,128,298.667c0,23.573,19.093,42.667,42.667,42.667s42.667-19.093,42.667-42.667 C213.333,275.093,194.24,256,170.667,256z "></path>
-																</g>
-															</g>
-														</g>
-													</svg>
-												</a>
-												<div class="action-option ">
-													<ul>
-														<li>
-															<a href="javascript:void(0); "><i class="far fa-edit mr-2 "></i>编辑</a>
-														</li>
-														<li>
-															<a th:href="@{/api/admin/del-book?bid=}+${book.getBid()}"><i class="far fa-trash-alt mr-2 "></i>删除</a>
-														</li>
-													</ul>
-												</div>
-											</td>
-										</tr>
-										</tbody>
-									</table>
-								</div>
+			<!-- From Start -->
+			<div class="from-wrapper">
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<div class="card">
+							<div class="card-header">
+								<h4>添加借阅</h4>
+								<p class="card-desc">请在下方选择所借阅的 <code>书籍</code> 以及对应的 <code>借阅人</code></p>
 							</div>
-							<div class="text-right">
-								<nav class="d-inline-block">
-									<ul class="pagination mb-0 ">
-										<li class="page-item disabled ">
-											<a class="page-link" href="javascript:void(0);" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
-										</li>
-										<li class="page-item active "><a class="page-link " href="javascript:void(0); ">1</a></li>
-										<li class="page-item ">
-											<a class="page-link " href="javascript:void(0); ">2</a>
-										</li>
-										<li class="page-item "><a class="page-link " href="javascript:void(0); ">3</a></li>
-										<li class="page-item ">
-											<a class="page-link " href="javascript:void(0); "><i class="fas fa-chevron-right "></i></a>
-										</li>
-									</ul>
-								</nav>
+							<div class="card-body">
+								<form class="separate-form" method="post" th:action="@{/api/admin/add-book}">
+									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+										<div class="row">
+											<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+												<div class="form-group">
+													<label for="member-name" class="col-form-label">书籍标题</label>
+													<input class="form-control" type="text" placeholder="伞兵一号的故事" id="member-name" name="title">
+												</div>
+											</div>
+											<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+												<div class="form-group">
+													<label for="member-email" class="col-form-label">书籍简介</label>
+													<input class="form-control" type="text" placeholder="讲述了一个伞兵带着所有人吃鸡的故事" id="member-email" name="desc">
+												</div>
+											</div>
+											<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+												<div class="form-group">
+													<label for="company-name" class="col-form-label">价格</label>
+													<input class="form-control" type="text" placeholder="100.50" id="company-name" name="price">
+												</div>
+											</div>
+										</div>
+										<div class="form-group mb-0">
+											<button class="btn btn-primary" type="submit">提交</button>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
+
+
 				</div>
+
 			</div>
 		</div>
 	</div>
