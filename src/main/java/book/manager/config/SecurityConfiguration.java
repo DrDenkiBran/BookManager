@@ -76,7 +76,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/static/**","/page/auth/**","/api/auth/**").permitAll()  //静态资源，使用permitAll来运行任何人访问（注意一定要放在前面）
                 .antMatchers("/page/user/**","/api/user/**").hasRole("user")
                 .antMatchers("/page/admin/**","/api/admin/**").hasRole("admin")
-                .anyRequest().hasAnyRole("user","admin")
+                .anyRequest().hasAnyRole("admin")
                 .and()
                 .formLogin()
                 .loginPage("/page/auth/login")
