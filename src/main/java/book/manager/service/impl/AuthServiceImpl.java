@@ -42,4 +42,9 @@ public class AuthServiceImpl implements AuthService {
         }
         return user;
     }
+
+    @Override
+    public int getSidById(int id) {
+        return mapper.getSidByUid(id);
+    }
 }
